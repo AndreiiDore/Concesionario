@@ -28,7 +28,7 @@
                   <Label text="Contraseña" GridPane.rowIndex="1" />
                   <TextField fx:id="userBox" GridPane.columnIndex="1" />
                   <PasswordField fx:id="passBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Switch to Secondary View" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="entrar" onAction="#log" text="Log" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </center>
@@ -36,6 +36,7 @@
             <Label text="Loggin" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
+      <Label fx:id="mensaje" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

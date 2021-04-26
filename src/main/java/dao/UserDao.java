@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -42,7 +43,18 @@ public class UserDao {
         User usckeck = new User();
         
     }
-    public void selectPass(){
-        String sql = "SELECT contraseña FROM usuario";
+    public User verUser(String nombre, String pass) throws SQLException{
+        String sql = "select * from usuario where nombre = ? and contraseña = ?";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, nombre);
+        sentencia.setString(2, pass);
+        ResultSet resultado = sentencia.executeQuery();
+        User us = new User();
+        while (resultado.next()) {            
+            us.setName(resultado.getString(2));
+            us.setPassword(resultado.getString(nombre));
+            
+        }
+        return us;
     }
 }

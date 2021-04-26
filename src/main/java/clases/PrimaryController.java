@@ -3,6 +3,7 @@ package clases;
 import dao.UserDao;
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -13,17 +14,34 @@ public class PrimaryController {
     @FXML
     private PasswordField passBox;
     @FXML
+    private Label mensaje;
+    @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
     }
     @FXML
-    private void log() throws IOException{
+    private boolean checkLog() throws IOException{
         String userName = userBox.getText();
         String userPass= passBox.getText();
-        
-        String sqlConsulta ="select * from usuario where nombre= \""+userName+"\" and contraseña=\""+userPass+"\";";
-        //https://byspel.com/como-hacer-un-login-en-java-con-base-de-datos-mysql/3/
-    
-        
+        try {
+            User log = new User(userBox.getText(),passBox.getText());
+            udao.verUser(userName, userPass);
+            if (log.getName().equals(userBox)&&log.getPassword().equals(passBox)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            mensaje.setText(e.getMessage());
+            return false;
+        }   
+    }
+    @FXML
+    private void log() throws IOException{
+        if (checkLog()) {
+            switchToSecondary();
+        }else{
+            mensaje.setText("Usuario o Contraseña erronea");
+        }
     }
 }
