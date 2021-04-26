@@ -39,11 +39,8 @@ public class UserDao {
     public void desconectar() throws SQLException {
         conexion.close();
     }
-    public void logUser(User us) throws SQLException{
-        User usckeck = new User();
-        
-    }
-    public User verUser(String nombre, String pass) throws SQLException{
+    
+    public User verUser(String nombre, String pass) throws SQLException{ 
         String sql = "select * from usuario where nombre = ? and contraseña = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setString(1, nombre);
@@ -51,8 +48,8 @@ public class UserDao {
         ResultSet resultado = sentencia.executeQuery();
         User us = new User();
         while (resultado.next()) {            
-            us.setName(resultado.getString(2));
-            us.setPassword(resultado.getString(nombre));
+            us.setName(resultado.getString(1));
+            us.setPassword(resultado.getString(2));
             
         }
         return us;

@@ -19,14 +19,15 @@ public class PrimaryController {
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
     }
-    @FXML
+    
     private boolean checkLog() throws IOException{
         String userName = userBox.getText();
         String userPass= passBox.getText();
         try {
-            User log = new User(userBox.getText(),passBox.getText());
-            udao.verUser(userName, userPass);
-            if (log.getName().equals(userBox)&&log.getPassword().equals(passBox)) {
+            udao.conectar();
+            User comparacion = new User();
+            comparacion=udao.verUser(userName, userPass);
+            if (comparacion.getName().equals(userName)&&comparacion.getPassword().equals(userPass)) {
                 return true;
             } else {
                 return false;
@@ -39,7 +40,7 @@ public class PrimaryController {
     @FXML
     private void log() throws IOException{
         if (checkLog()) {
-            switchToSecondary();
+            App.setRoot("secondary");
         }else{
             mensaje.setText("Usuario o Contraseña erronea");
         }
