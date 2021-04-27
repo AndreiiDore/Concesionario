@@ -10,28 +10,55 @@ package clases;
  * @author Andrei
  */
 public class User {
-    private String name;
+    private int id;
+    private String nombre;
     private String password;
+    private String preguntaSeguridad;
+    private String respuesta;
+    
     
     public User(){}
 
-    public User(String name, String password) {
-        this.name = name;
+    public User(String nombre, String password) {
+        this.nombre = nombre;
         this.password = password;
     }
+    
+    
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
+    public User(String nombre, String password, String preguntaSeguridad, String respuesta) {
+        this.nombre = nombre;
+        this.password = password;
+        this.preguntaSeguridad = preguntaSeguridad;
+        this.respuesta = respuesta;
     }
 
     /**
-     * @param name the name to set
+     * @return the id
      */
-    public void setName(String name) {
-        this.name = name;
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     /**
@@ -47,6 +74,36 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /**
+     * @return the preguntaSeguridad
+     */
+    public String getPreguntaSeguridad() {
+        return preguntaSeguridad;
+    }
+
+    /**
+     * @param preguntaSeguridad the preguntaSeguridad to set
+     */
+    public void setPreguntaSeguridad(String preguntaSeguridad) {
+        this.preguntaSeguridad = preguntaSeguridad;
+    }
+
+    /**
+     * @return the respuesta
+     */
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    /**
+     * @param respuesta the respuesta to set
+     */
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+    
+    
     
     
     

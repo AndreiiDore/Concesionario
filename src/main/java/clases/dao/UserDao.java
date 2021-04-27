@@ -44,12 +44,12 @@ public class UserDao {
         boolean encontrado =false;
         String sql = "select * from usuario where nombre = ? and contraseña = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
-        sentencia.setString(1, u.getName());
+        sentencia.setString(1, u.getNombre());
         sentencia.setString(2, u.getPassword());
         ResultSet resultado = sentencia.executeQuery();
         while (resultado.next()) {            
-            u.setName(resultado.getString(1));
-            u.setPassword(resultado.getString(2));
+            u.setNombre(resultado.getString(2));
+            u.setPassword(resultado.getString(3));
             encontrado = true;
         }
         if (encontrado) {
@@ -57,5 +57,19 @@ public class UserDao {
         }else{
             return null;
         }
+    }
+    
+    public void addUser(User u) throws SQLException{
+        String sql="insert into usuario(nombre,contraseña,pregunta,respuesta)values(?,?,?,?)";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        
+        sentencia.setString(1, u.getNombre());
+        sentencia.setString(2,u.getPassword());
+        sentencia.setString(3,u.getPreguntaSeguridad());
+        sentencia.setString(4,u.getRespuesta());
+        ResultSet resultado = sentencia.executeQuery();
+       
+        
+        
     }
 }

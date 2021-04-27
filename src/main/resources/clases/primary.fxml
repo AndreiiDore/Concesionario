@@ -9,32 +9,62 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" prefHeight="269.0" prefWidth="387.0" spacing="20.0" style="-fx-background-color: 0096c7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clases.PrimaryController">
+<VBox alignment="CENTER" prefHeight="474.0" prefWidth="391.0" spacing="20.0" style="-fx-background-color: 0096c7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clases.PrimaryController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <top>
+            <Label text="Loggin" BorderPane.alignment="CENTER" />
+         </top>
          <center>
             <GridPane prefHeight="160.0" prefWidth="454.0" style="-fx-background-color: 0096c7;" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="283.0" minWidth="10.0" prefWidth="268.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.0" minWidth="10.0" prefWidth="271.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.0" minWidth="10.0" prefWidth="167.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.0" minWidth="10.0" prefWidth="24.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Usuario" />
-                  <Label text="Contraseña" GridPane.rowIndex="1" />
-                  <TextField fx:id="userBox" GridPane.columnIndex="1" />
-                  <PasswordField fx:id="passBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="entrar" onAction="#log" text="Log" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="userBox" />
+                  <PasswordField fx:id="passBox" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </center>
-         <top>
-            <Label text="Loggin" BorderPane.alignment="CENTER" />
-         </top>
+         <left>
+            <GridPane prefHeight="153.0" prefWidth="164.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="39.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="161.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="20.0" prefWidth="42.0" text="Usuario" GridPane.columnIndex="1" />
+                  <Label text="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+         </left>
+         <bottom>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="40.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="107.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="67.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="179.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="entrar" onAction="#log" text="Entrar" GridPane.columnIndex="2" />
+                  <Button fx:id="register" mnemonicParsing="false" onAction="#registar" text="Registrar" GridPane.columnIndex="1" />
+                  <Button mnemonicParsing="false" text="¿Has olvidado la contraseña?" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+         </bottom>
       </BorderPane>
       <Label fx:id="mensaje" />
    </children>

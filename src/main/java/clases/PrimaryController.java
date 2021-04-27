@@ -40,4 +40,7 @@ public class PrimaryController {
             mensaje.setText(e.getMessage());
         }
     }
+    public void registar() throws IOException{
+        App.setRoot("registro");
+    }
 }
