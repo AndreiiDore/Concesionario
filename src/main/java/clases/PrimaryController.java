@@ -1,6 +1,6 @@
 package clases;
 
-import dao.UserDao;
+import clases.dao.UserDao;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,34 +15,29 @@ public class PrimaryController {
     private PasswordField passBox;
     @FXML
     private Label mensaje;
-    @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
-    }
+//    @FXML
+//    private void switchToSecondary() throws IOException {
+//        App.setRoot("secondary");
+//    }
     
-    private boolean checkLog() throws IOException{
+    @FXML
+    private void log() throws IOException{
         String userName = userBox.getText();
         String userPass= passBox.getText();
         try {
+            udao = new UserDao();
+            User orig =new User(userName,userPass);
+            User comp = new User();
             udao.conectar();
-            User comparacion = new User();
-            comparacion=udao.verUser(userName, userPass);
-            if (comparacion.getName().equals(userName)&&comparacion.getPassword().equals(userPass)) {
-                return true;
+            comp=udao.verUser(orig);
+
+            if (comp!=null) {
+                App.setRoot("secondary");
             } else {
-                return false;
+                mensaje.setText("Usuario o contraseña incorrecta");
             }
         } catch (Exception e) {
             mensaje.setText(e.getMessage());
-            return false;
-        }   
-    }
-    @FXML
-    private void log() throws IOException{
-        if (checkLog()) {
-            App.setRoot("secondary");
-        }else{
-            mensaje.setText("Usuario o Contraseña erronea");
         }
     }
 }

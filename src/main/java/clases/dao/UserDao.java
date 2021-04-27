@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package clases.dao;
 
 import clases.App;
 import clases.User;
@@ -40,18 +40,22 @@ public class UserDao {
         conexion.close();
     }
     
-    public User verUser(String nombre, String pass) throws SQLException{ 
+    public User verUser(User u) throws SQLException{
+        boolean encontrado =false;
         String sql = "select * from usuario where nombre = ? and contraseña = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
-        sentencia.setString(1, nombre);
-        sentencia.setString(2, pass);
+        sentencia.setString(1, u.getName());
+        sentencia.setString(2, u.getPassword());
         ResultSet resultado = sentencia.executeQuery();
-        User us = new User();
         while (resultado.next()) {            
-            us.setName(resultado.getString(1));
-            us.setPassword(resultado.getString(2));
-            
+            u.setName(resultado.getString(1));
+            u.setPassword(resultado.getString(2));
+            encontrado = true;
         }
-        return us;
+        if (encontrado) {
+            return u;
+        }else{
+            return null;
+        }
     }
 }
