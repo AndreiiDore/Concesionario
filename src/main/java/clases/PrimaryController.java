@@ -27,9 +27,9 @@ public class PrimaryController {
         try {
             udao = new UserDao();
             User orig =new User(userName,userPass);
-            User comp = new User();
+            
             udao.conectar();
-            comp=udao.verUser(orig);
+            User comp =udao.verUser(orig);
 
             if (comp!=null) {
                 App.setRoot("secondary");
