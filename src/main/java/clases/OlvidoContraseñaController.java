@@ -34,8 +34,10 @@ public class OlvidoContraseñaController implements Initializable {
         User usuario =new User(nombreUsuario.getText());
         udao = new UserDao();
         try{
-            preguntaUsuario.setText(udao.verPregunta(usuario));
-        }catch(SQLException e){
+            udao.conectar();
+            String pregunta=udao.verPregunta(usuario);
+            preguntaUsuario.setText(pregunta);
+        }catch(Exception e){
             mensajeError.setText(e.getMessage());
         }
         

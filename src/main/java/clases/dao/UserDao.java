@@ -59,14 +59,22 @@ public class UserDao {
         }
     }
     public String verPregunta(User u) throws SQLException{
-         String sql="select pregunta from usuario where nombre=?";
+        boolean encontrado=false; 
+        String sql="select pregunta from usuario where nombre=?";
          PreparedStatement sentencia = conexion.prepareStatement(sql);
          sentencia.setString(1, u.getNombre());
          ResultSet resultado = sentencia.executeQuery();
          while(resultado.next()){
-             return resultado.getString(1);
+             u.setNombre(resultado.getString(1));
+             encontrado=true;
          }
-        return "No se encontro";
+         if (encontrado) {
+             return u.getNombre();
+            //return resultado.getNString(0);
+        } else {
+             return "No se encontro";
+        }
+        
          
     }
     

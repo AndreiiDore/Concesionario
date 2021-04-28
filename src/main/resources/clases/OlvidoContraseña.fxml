@@ -30,10 +30,8 @@
                   <Label text="Label" GridPane.columnIndex="1" />
                   <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="nombreUsuario" onAction="#ckeckNombre" GridPane.columnIndex="2" />
+                  <TextField fx:id="nombreUsuario" onKeyTyped="#checkNombre" GridPane.columnIndex="2" />
                   <TextField fx:id="preguntaUsuario" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" text="Poner pregunta" GridPane.columnIndex="3" />
-                  <Label fx:id="mensajeError" />
                </children>
             </GridPane>
          </center>
@@ -55,5 +53,6 @@
             </GridPane>
          </bottom>
       </BorderPane>
+      <Label fx:id="mensajeError" layoutX="52.0" layoutY="364.0" prefHeight="17.0" prefWidth="526.0" />
    </children>
 </AnchorPane>
