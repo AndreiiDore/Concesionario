@@ -18,6 +18,12 @@ public class User {
     
     
     public User(){}
+    
+    public User(String nombre){
+        this.nombre=nombre;
+    }
+    
+    
 
     public User(String nombre, String password) {
         this.nombre = nombre;

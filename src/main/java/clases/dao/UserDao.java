@@ -58,6 +58,17 @@ public class UserDao {
             return null;
         }
     }
+    public String verPregunta(User u) throws SQLException{
+         String sql="select pregunta from usuario where nombre=?";
+         PreparedStatement sentencia = conexion.prepareStatement(sql);
+         sentencia.setString(1, u.getNombre());
+         ResultSet resultado = sentencia.executeQuery();
+         while(resultado.next()){
+             return resultado.getString(1);
+         }
+        return "No se encontro";
+         
+    }
     
     public void addUser(User u) throws SQLException{
         String sql="insert into usuario(nombre,contraseña,pregunta,respuesta)values(?,?,?,?)";
