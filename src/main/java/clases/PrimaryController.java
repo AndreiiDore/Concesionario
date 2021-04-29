@@ -43,4 +43,7 @@ public class PrimaryController {
     public void registar() throws IOException{
         App.setRoot("registro");
     }
+    public void olvidoPass() throws IOException{
+        App.setRoot("olvidoContraseña");
+    }
 }

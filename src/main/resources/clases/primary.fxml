@@ -61,7 +61,7 @@
                <children>
                   <Button fx:id="entrar" onAction="#log" text="Entrar" GridPane.columnIndex="2" />
                   <Button fx:id="register" mnemonicParsing="false" onAction="#registar" text="Registrar" GridPane.columnIndex="1" />
-                  <Button mnemonicParsing="false" text="¿Has olvidado la contraseña?" GridPane.columnIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#olvidoPass" text="¿Has olvidado la contraseña?" GridPane.columnIndex="3" />
                </children>
             </GridPane>
          </bottom>

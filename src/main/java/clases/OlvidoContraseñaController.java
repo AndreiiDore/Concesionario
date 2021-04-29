@@ -13,6 +13,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 /**
@@ -27,6 +28,10 @@ public class OlvidoContraseñaController implements Initializable {
     private TextField preguntaUsuario;
     @FXML
     private Label mensajeError;
+    @FXML
+    private TextField respuestaSeguridad;
+    @FXML
+    private PasswordField nuevaContraseña;
     private static UserDao udao;
     
     @FXML
@@ -40,7 +45,29 @@ public class OlvidoContraseñaController implements Initializable {
         }catch(Exception e){
             mensajeError.setText(e.getMessage());
         }
-        
+    }
+    public void ckeckPregunta(){
+        udao=new UserDao();
+        String usuario=nombreUsuario.getText();
+        String respuestaTexto=respuestaSeguridad.getText();
+        int respuesta=Integer.parseInt(respuestaTexto);
+        int respuestaBBDD=0;
+        String nuevaPass=nuevaContraseña.getText();
+        try {
+            respuestaBBDD=udao.verRespuesta(usuario);
+        } catch (Exception e) {
+            mensajeError.setText(e.getMessage());
+        }
+        if (respuestaBBDD==respuesta) {
+            try {
+                udao.cambiarContraseña(usuario,nuevaPass);
+            } catch (Exception e) {
+                mensajeError.setText(e.getMessage());
+            }
+            
+        } else {
+            mensajeError.setText("No se pudo hacer el cambio de contraseña");
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

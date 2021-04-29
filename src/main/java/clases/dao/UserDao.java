@@ -87,8 +87,37 @@ public class UserDao {
         sentencia.setString(3,u.getPreguntaSeguridad());
         sentencia.setString(4,u.getRespuesta());
         ResultSet resultado = sentencia.executeQuery();
-       
-        
-        
+    }
+    public int verRespuesta(String usuario) throws SQLException{
+        boolean encontrado = false;
+        String sql="select respuesta from usuario where nombre = ?";
+        int resultadoConsulta=0;
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, usuario);
+        ResultSet resultado = sentencia.executeQuery();
+        while (resultado.next()) {            
+            resultadoConsulta=resultado.getInt(1);
+            encontrado = true;
+        }
+        if (encontrado) {
+            return resultadoConsulta;
+        }else{
+            return -1;
+        }
+    }
+    public void cambiarContraseña(String user,String passnew) throws SQLException{
+        int coduser =0;
+        String sql="select id from usuario where nombre=?";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, user);
+         ResultSet resultado = sentencia.executeQuery();
+         while(resultado.next()){
+             coduser=(resultado.getInt(1));
+         }
+         sql="update usuario set contraseña = ? where id=?";
+         sentencia = conexion.prepareStatement(sql);
+         sentencia.setString(1,passnew);
+         sentencia.setInt(2, coduser);
+         resultado = sentencia.executeQuery();
     }
 }
