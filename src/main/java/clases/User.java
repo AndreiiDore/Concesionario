@@ -29,10 +29,14 @@ public class User {
         this.nombre = nombre;
         this.password = password;
     }
+
+    
+    
+    
     
     
 
-    public User(String nombre, String password, String preguntaSeguridad, String respuesta) {
+    public User(String nombre, String respuesta,String preguntaSeguridad,String password) {
         this.nombre = nombre;
         this.password = password;
         this.preguntaSeguridad = preguntaSeguridad;

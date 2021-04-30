@@ -88,36 +88,29 @@ public class UserDao {
         sentencia.setString(4,u.getRespuesta());
         ResultSet resultado = sentencia.executeQuery();
     }
-    public int verRespuesta(String usuario) throws SQLException{
+    public User verRespuesta(User u) throws SQLException{
         boolean encontrado = false;
-        String sql="select respuesta from usuario where nombre = ?";
-        int resultadoConsulta=0;
+        String sql="select id,respuesta from usuario where nombre = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
-        sentencia.setString(1, usuario);
+        sentencia.setString(1, u.getNombre());
         ResultSet resultado = sentencia.executeQuery();
         while (resultado.next()) {            
-            resultadoConsulta=resultado.getInt(1);
+            u.setId(resultado.getInt(1));
+            u.setRespuesta(resultado.getString(2));
+            
             encontrado = true;
         }
         if (encontrado) {
-            return resultadoConsulta;
+            return u;
         }else{
-            return -1;
+            return null;
         }
     }
-    public void cambiarContraseña(String user,String passnew) throws SQLException{
-        int coduser =0;
-        String sql="select id from usuario where nombre=?";
-        PreparedStatement sentencia = conexion.prepareStatement(sql);
-        sentencia.setString(1, user);
-         ResultSet resultado = sentencia.executeQuery();
-         while(resultado.next()){
-             coduser=(resultado.getInt(1));
-         }
-         sql="update usuario set contraseña = ? where id=?";
-         sentencia = conexion.prepareStatement(sql);
-         sentencia.setString(1,passnew);
-         sentencia.setInt(2, coduser);
-         resultado = sentencia.executeQuery();
+    public void cambiarContraseña(User u) throws SQLException{
+         String sql="update usuario set contraseña = ? where id=?";
+         PreparedStatement sentencia = conexion.prepareStatement(sql);
+         sentencia.setString(1,u.getPassword());
+         sentencia.setInt(2,u.getId());
+         sentencia.execute();
     }
 }

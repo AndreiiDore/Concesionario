@@ -46,29 +46,50 @@ public class OlvidoContraseñaController implements Initializable {
             mensajeError.setText(e.getMessage());
         }
     }
+    @FXML
     public void ckeckPregunta(){
-        udao=new UserDao();
-        String usuario=nombreUsuario.getText();
-        String respuestaTexto=respuestaSeguridad.getText();
-        int respuesta=Integer.parseInt(respuestaTexto);
-        int respuestaBBDD=0;
-        String nuevaPass=nuevaContraseña.getText();
+        udao= new UserDao();
+        User usuario = new User(nombreUsuario.getText(),preguntaUsuario.getText(),
+                respuestaSeguridad.getText(),nuevaContraseña.getText());
+        User comparacion =new User();
         try {
-            respuestaBBDD=udao.verRespuesta(usuario);
-        } catch (Exception e) {
-            mensajeError.setText(e.getMessage());
-        }
-        if (respuestaBBDD==respuesta) {
-            try {
-                udao.cambiarContraseña(usuario,nuevaPass);
-            } catch (Exception e) {
-                mensajeError.setText(e.getMessage());
+            udao.conectar();
+            comparacion=udao.verRespuesta(usuario);
+            if (comparacion.getRespuesta().equals(usuario.getRespuesta())) {
+                udao.cambiarContraseña(usuario);
+            mensajeError.setText("Contraseña actualizada");
+            }else{
+                mensajeError.setText("No se pudo actualizar la contraseña");
             }
             
-        } else {
-            mensajeError.setText("No se pudo hacer el cambio de contraseña");
+       } catch (Exception e) {
+            mensajeError.setText(e.getMessage());
         }
     }
+//    public void ckeckPregunta(){
+//        udao=new UserDao();
+//        String usuario=nombreUsuario.getText();
+//        String respuestaTexto=respuestaSeguridad.getText();
+//        int respuesta=Integer.parseInt(respuestaTexto);
+//        int respuestaBBDD=0;
+//        String nuevaPass=nuevaContraseña.getText();
+//        try {
+//            respuestaBBDD=udao.verRespuesta(usuario);
+//        } catch (Exception e) {
+//            mensajeError.setText(e.getMessage());
+//        }
+//        if (respuestaBBDD==respuesta) {
+//            try {
+//                udao.cambiarContraseña(usuario,nuevaPass);
+//            } catch (Exception e) {
+//                mensajeError.setText(e.getMessage());
+//            }
+//            
+//        } else {
+//            mensajeError.setText("No se pudo hacer el cambio de contraseña");
+//        }
+//    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
