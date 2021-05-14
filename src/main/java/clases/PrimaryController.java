@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 
 public class PrimaryController {
     private static UserDao udao;
+    private static App a;
     @FXML
     private TextField userBox;
     @FXML
@@ -32,6 +33,7 @@ public class PrimaryController {
             User comp =udao.verUser(orig);
 
             if (comp!=null) {
+                a.setNombreUser(userName);
                 App.setRoot("secondary");
             } else {
                 mensaje.setText("Usuario o contraseña incorrecta");

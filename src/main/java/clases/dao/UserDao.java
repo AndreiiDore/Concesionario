@@ -25,13 +25,13 @@ public class UserDao {
     private Connection conexion;
     
     public void conectar() throws ClassNotFoundException,SQLException,IOException{
-        //Properties configuration = new Properties();
-        //configuration.load(new FileInputStream(new File(App.class.getResource("connectionDB.properties").getPath())));
-        String host = "localhost";
-        String port = "3306";
-        String name = "concesionario";
-        String username = "root";
-        String password = "andreidore";
+        Properties configuration = new Properties();
+        configuration.load(new FileInputStream(new File(App.class.getResource("ConectionBD.properties").getPath())));        
+        String host = configuration.getProperty("host");
+        String port = configuration.getProperty("port");
+        String name = configuration.getProperty("name");
+        String username = configuration.getProperty("username");
+        String password = configuration.getProperty("password");
 
         conexion = DriverManager.getConnection("jdbc:mariadb://" + host + ":" + port + "/" + name + "?serverTimezone=UTC",
                 username, password);

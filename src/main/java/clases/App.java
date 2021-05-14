@@ -15,6 +15,8 @@ public class App extends Application {
 
     private static Scene scene;
 
+    private static String nombreUser;
+    
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 640, 480);
@@ -34,5 +36,20 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    /**
+     * @return the nombreUser
+     */
+    public static String getNombreUser() {
+        return nombreUser;
+    }
+
+    /**
+     * @param aNombreUser the nombreUser to set
+     */
+    public static void setNombreUser(String aNombreUser) {
+        nombreUser = aNombreUser;
+    }
+    
 
 }
