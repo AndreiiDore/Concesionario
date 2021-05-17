@@ -12,7 +12,7 @@
 
 <VBox alignment="CENTER" prefHeight="600.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clases.SecondaryController">
     <children>
-        <Label fx:id="t" text="Secondary View" />
+        <Label fx:id="t" text="Concesionario" textAlignment="CENTER" />
       <BorderPane prefHeight="432.0" prefWidth="530.0">
          <center>
             <GridPane BorderPane.alignment="CENTER">
@@ -43,12 +43,12 @@
                   <TextField fx:id="color" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="precio" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <TextField fx:id="id" GridPane.columnIndex="1" />
-                  <Label text="ID usuario vendedor" />
+                  <Label text="ID usuario vendedor" textAlignment="CENTER" />
                </children>
             </GridPane>
          </center>
          <left>
-            <ListView fx:id="lista" onMouseClicked="#seleccionarCoche" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="lista" onMouseClicked="#seleccionarCoche" prefHeight="342.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </left>
          <bottom>
             <GridPane BorderPane.alignment="CENTER">
@@ -56,16 +56,19 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Button mnemonicParsing="false" onAction="#initLists" text="Actualizar" />
                   <Button mnemonicParsing="false" onAction="#newCar" text="Crear" GridPane.columnIndex="1" />
-                  <Button mnemonicParsing="false" text="Actualizar coche" GridPane.columnIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#deleteCar" text="Borrar" GridPane.columnIndex="3" />
+                  <Button mnemonicParsing="false" text="Actualizar coche" GridPane.columnIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#deleteCar" text="Borrar" GridPane.columnIndex="4" />
+                    <Button fx:id="secondaryButton" onAction="#switchToPrimary" text="Atras" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </bottom>
@@ -81,7 +84,7 @@
             </GridPane>
          </top>
       </BorderPane>
-        <Button fx:id="secondaryButton" onAction="#switchToPrimary" text="Switch to Primary View" />
+      <Label fx:id="errorBox" prefHeight="17.0" prefWidth="553.0" />
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

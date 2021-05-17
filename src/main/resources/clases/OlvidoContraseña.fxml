@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -10,7 +11,10 @@
    <children>
       <BorderPane layoutX="71.0" layoutY="27.0" prefHeight="327.0" prefWidth="479.0">
          <top>
-            <Label text="Label" BorderPane.alignment="CENTER" />
+            <Label text="¿Has Olvidado tu contraseña?" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="21.0" />
+               </font></Label>
          </top>
          <center>
             <GridPane BorderPane.alignment="CENTER">

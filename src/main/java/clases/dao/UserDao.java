@@ -70,7 +70,6 @@ public class UserDao {
          }
          if (encontrado) {
              return u.getNombre();
-            //return resultado.getNString(0);
         } else {
              return "No se encontro";
         }

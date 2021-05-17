@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -37,6 +38,11 @@ public class SecondaryController {
     private TextField precio;
     @FXML
     private ListView lista;
+    @FXML
+    private Label errorBox;
+    @FXML
+    private Label exitoBox;
+    
     
     private ObservableList <Gasolina> gasofla= FXCollections.observableArrayList(Arrays.asList(Gasolina.values()));
     @FXML
@@ -57,7 +63,7 @@ public class SecondaryController {
             
 
         } catch (SQLException sqle) {
-            System.out.println("error");
+            errorBox.setText(sqle.getMessage());
         }
         
     }
@@ -90,10 +96,9 @@ public class SecondaryController {
         try {
             cocheD.conectar();
             cocheD.borrarCoche(coche);
-            System.out.println("Coche dado de baja");
+            exitoBox.setText("Coche añadido");
         } catch (Exception e) {
-            System.out.println("Error");
-            System.out.println(e.getMessage());
+            errorBox.setText(e.getMessage());
         }
         
     }
@@ -109,10 +114,10 @@ public class SecondaryController {
         try {
             cocheD.conectar();
             cocheD.nuevoCohe(coche);
+            exitoBox.setText("Un coche mas para la coleccion");
 
         } catch (Exception e) {
-            System.out.println("error");
-            System.out.println(e.getMessage());
+            errorBox.setText(e.getMessage());
         }
         
     }

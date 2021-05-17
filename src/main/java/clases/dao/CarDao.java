@@ -43,7 +43,7 @@ public class CarDao {
     }
     public List<Coche> listCoches() throws SQLException {
         List<Coche> coches = new ArrayList<>();
-        String sql = "SELECT * FROM coche";
+        String sql = "call verCoches";
 
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         ResultSet resultado = sentencia.executeQuery();
