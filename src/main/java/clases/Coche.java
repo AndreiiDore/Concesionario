@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hereda de la clase Abstracta Vehiculo.
+ * Tendremos en cuenta de que tendremos que implementar el metodo toString 
  */
 package clases;
 
@@ -16,9 +15,21 @@ public class Coche extends Vehiculo{
     private int puertas;
     private String tipoCombustible;
    
-    
+    /**
+     * Constructor vacio
+     */
     public Coche(){};
 
+    /**
+     * Constructor con todos los datos necesarios para crear el obejeto completo
+     * @param id identificador del coche
+     * @param marca marca del coche
+     * @param modelo modelo de la marca de coche
+     * @param matricula matricula del coche
+     * @param color color del coche 
+     * @param dueño identificador del dueño al cual le pertenece el mismo
+     * @param precio precio por el cual esta tasado
+     */
     public Coche(int id, String marca,String modelo,
             String matricula, String color, int dueño, int precio) {
         super(id, marca, modelo,matricula, color, dueño, precio);
@@ -28,7 +39,10 @@ public class Coche extends Vehiculo{
     
     
     
-    
+    /**
+     * Metodo por el cual vamos a devolver solamente la marca del coche
+     * @return marca del coche
+     */
     @Override
     public String toString() {
         return getMarca();

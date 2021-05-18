@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
  * @author Andrei
  */
 public class OlvidoContraseñaController implements Initializable {
+    
     @FXML
     private TextField nombreUsuario;
     @FXML
@@ -34,6 +35,9 @@ public class OlvidoContraseñaController implements Initializable {
     private PasswordField nuevaContraseña;
     private static UserDao udao;
     
+    /**
+     * metodo por el cual vamos a ver que el nombre de usuario es correcto
+     */
     @FXML
     public void checkNombre(){
         User usuario =new User(nombreUsuario.getText());
@@ -46,6 +50,10 @@ public class OlvidoContraseñaController implements Initializable {
             mensajeError.setText(e.getMessage());
         }
     }
+    /**
+     * metodo por el cual vamos a comprobar que la pregunta de seguridad es la
+     * correcta es del usuario que deseamos
+     */
     @FXML
     public void ckeckPregunta(){
         udao= new UserDao();

@@ -23,7 +23,13 @@ import java.util.Properties;
  */
 public class UserDao {
     private Connection conexion;
-    
+    /**
+     * Metodo por el cual vamos a recoger los datos necesarios para la conexion 
+     * a la base de datos
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException 
+     */
     public void conectar() throws ClassNotFoundException,SQLException,IOException{
         Properties configuration = new Properties();
         configuration.load(new FileInputStream(new File(App.class.getResource("ConectionBD.properties").getPath())));        
@@ -36,10 +42,20 @@ public class UserDao {
         conexion = DriverManager.getConnection("jdbc:mariadb://" + host + ":" + port + "/" + name + "?serverTimezone=UTC",
                 username, password);
     }
+    /**
+     * metodo por el cual vamos a desconectarnos de la base de datos
+     * @throws SQLException 
+     */
     public void desconectar() throws SQLException {
         conexion.close();
     }
-    
+    /**
+     * metodo para ver que el usuario que estamos introduciendo existe
+     * en nuestra base de datos
+     * @param u usuario que comprobamos que existe
+     * @return
+     * @throws SQLException 
+     */
     public User verUser(User u) throws SQLException{
         boolean encontrado =false;
         String sql = "select * from usuario where nombre = ? and contraseña = ?";
@@ -58,6 +74,13 @@ public class UserDao {
             return null;
         }
     }
+    /**
+     * metodo por el cual nos muestra la pregunta de seguridad de un usuario
+     * que tenga el mismo nombre
+     * @param u usuario con el nombre
+     * @return pregunta de seguridad 
+     * @throws SQLException 
+     */
     public String verPregunta(User u) throws SQLException{
         boolean encontrado=false; 
         String sql="select pregunta from usuario where nombre=?";
@@ -76,7 +99,12 @@ public class UserDao {
         
          
     }
-    
+    /**
+     * metodo por el cual creamos un usuario en nuestra base de datos
+     * para ello vamos a usar la consulta de insert
+     * @param u usuario con los datos que le vamos a meter en la base de datos
+     * @throws SQLException 
+     */
     public void addUser(User u) throws SQLException{
         String sql="insert into usuario(nombre,contraseña,pregunta,respuesta)values(?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -87,6 +115,15 @@ public class UserDao {
         sentencia.setString(4,u.getRespuesta());
         ResultSet resultado = sentencia.executeQuery();
     }
+    /**
+     * metodo por el cual vamos a combrobar de que la respuesta de seguridad
+     * de un usuario es igual a la que mete el usuario que esta usando la
+     * aplicacion
+     * @param u objeto de tipo usuario que tiene los datos necesarios para la 
+     * consulta
+     * @return un usuario o nulo
+     * @throws SQLException 
+     */
     public User verRespuesta(User u) throws SQLException{
         boolean encontrado = false;
         String sql="select id,respuesta from usuario where nombre = ?";
@@ -105,6 +142,11 @@ public class UserDao {
             return null;
         }
     }
+    /**
+     * metodo por el cual un usuario cambia la contraseña
+     * @param u usuario con los dats necessarios
+     * @throws SQLException 
+     */
     public void cambiarContraseña(User u) throws SQLException{
          String sql="update usuario set contraseña = ? where id=?";
          PreparedStatement sentencia = conexion.prepareStatement(sql);

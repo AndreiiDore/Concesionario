@@ -36,7 +36,13 @@ public class RegistroController implements Initializable {
     private Label mensaje;
     
      private static UserDao udao;
-     
+     /**
+      * metodo por el cual recogemos los datos de la pantalla en la que se 
+      * encuentra un usuario y lo metemos en un objeto de la clase user.
+      * Despues se crea el usuario en nuestra base de datos
+      * @throws IOException
+      * @throws SQLException 
+      */
     @FXML
     public void registar() throws IOException, SQLException{
         String nombre=nombreUsuario.getText();
@@ -56,6 +62,10 @@ public class RegistroController implements Initializable {
         
         
     }
+    /**
+     * metodo para volver a la pantalla de login
+     * @throws IOException 
+     */
     @FXML
     public void atras() throws IOException{
         App.setRoot("primary");

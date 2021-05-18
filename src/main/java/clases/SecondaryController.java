@@ -44,14 +44,20 @@ public class SecondaryController {
     private Label exitoBox;
     
     
-    private ObservableList <Gasolina> gasofla= FXCollections.observableArrayList(Arrays.asList(Gasolina.values()));
+   /**
+    * metodo para volver a la pantalla de login
+    * @throws IOException 
+    */
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
     }
-//    public void comboPosiciones(){
-//        gasolina.setItems(FXCollections.observableArrayList(Arrays.asList(Gasolina.values())));
-//    }
+    /**
+     * metodo por el cual vamos a inicializar la lista de vehiculos que tengamos 
+     * en nuestra base de datos
+     * @throws ClassNotFoundException
+     * @throws IOException 
+     */
     @FXML
     public void initLists() throws ClassNotFoundException, IOException{
        CarDao coche = new CarDao();
@@ -67,6 +73,11 @@ public class SecondaryController {
         }
         
     }
+    /**
+     * metodo por el cual vamos a poner la informacion de cada vehiculo en las
+     * cajas correspondientes
+     * @param c coche que vamos a cargar en nuestra vista mas detallada
+     */
     @FXML
     public void cargarCoche(Coche c){
         marca.setText(c.getMarca());
@@ -78,11 +89,18 @@ public class SecondaryController {
         idCoche.setText(String.valueOf(c.getId()));
        
     }
+    /**
+     * Metodo para seleccionar un coche de nuestra lista
+     * @param e Evento
+     */
     @FXML
     public void seleccionarCoche(Event e){
         cocheSel=(Coche)lista.getSelectionModel().getSelectedItem();
         cargarCoche(cocheSel);
     }
+    /**
+     * metodo por el cual vamos a borrar un coche de nuesta base de datos
+     */
     @FXML
     public void deleteCar(){
         CarDao cocheD = new CarDao();
@@ -102,6 +120,9 @@ public class SecondaryController {
         }
         
     }
+    /**
+     * metodo por el cual vamos a añadir un nuevo coche a nuestra base de datos
+     */
     @FXML 
     public void newCar(){
         CarDao cocheD = new CarDao();
@@ -111,6 +132,7 @@ public class SecondaryController {
         coche.setMatricula(matricula.getText());
         coche.setColor(color.getText());
         coche.setPrecio(Integer.valueOf(precio.getText()));
+        coche.setDueño(Integer.valueOf(id.getText()));
         try {
             cocheD.conectar();
             cocheD.nuevoCohe(coche);
@@ -118,6 +140,7 @@ public class SecondaryController {
 
         } catch (Exception e) {
             errorBox.setText(e.getMessage());
+            System.out.println(e.getMessage());
         }
         
     }

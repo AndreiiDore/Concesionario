@@ -16,11 +16,10 @@ public class PrimaryController {
     private PasswordField passBox;
     @FXML
     private Label mensaje;
-//    @FXML
-//    private void switchToSecondary() throws IOException {
-//        App.setRoot("secondary");
-//    }
-    
+    /**
+     * metodo por el cual vamos a hacer el login de un usuario
+     * @throws IOException 
+     */
     @FXML
     private void log() throws IOException{
         String userName = userBox.getText();
@@ -42,9 +41,19 @@ public class PrimaryController {
             mensaje.setText(e.getMessage());
         }
     }
+    /**
+     * metodo que nos va a pasar a otra pantalla en la que podemos registrar 
+     * a nuevos usuarios
+     * @throws IOException 
+     */
     public void registar() throws IOException{
         App.setRoot("registro");
     }
+    /**
+     * metodo por el cual vamos a pasar a otra pantalla en la que podemos recuperar
+     * la contraseña de un usuario
+     * @throws IOException 
+     */
     public void olvidoPass() throws IOException{
         App.setRoot("olvidoContraseña");
     }

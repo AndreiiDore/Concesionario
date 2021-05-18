@@ -25,7 +25,12 @@ import java.util.Properties;
  */
 public class CarDao {
     private Connection conexion;
-    
+    /**
+     * Metodo por el cual vamos a recoger los datos necesarios de la conexion
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException 
+     */
     public void conectar() throws ClassNotFoundException,SQLException,IOException{
         Properties configuration = new Properties();
         configuration.load(new FileInputStream(new File(App.class.getResource("ConectionBD.properties").getPath())));        
@@ -38,9 +43,19 @@ public class CarDao {
         conexion = DriverManager.getConnection("jdbc:mariadb://" + host + ":" + port + "/" + name + "?serverTimezone=UTC",
                 username, password);
     }
+    /**
+     * metodo que vamos a usar para desconectarnos
+     * @throws SQLException 
+     */
     public void desconectar() throws SQLException {
         conexion.close();
     }
+    /**
+     * Metodo por el cual iniciamos la lista para poder ver los coches que 
+     * deseemos en cada momento
+     * @return
+     * @throws SQLException 
+     */
     public List<Coche> listCoches() throws SQLException {
         List<Coche> coches = new ArrayList<>();
         String sql = "call verCoches";
@@ -63,13 +78,23 @@ public class CarDao {
 
         return coches;
     }
-    
+    /**
+     * Metodo por el cual vamos a borrar un coche por el id que tenga el mismo
+     * @param c coche con los datos necesarios
+     * @throws SQLException 
+     */
     public void borrarCoche(Coche c) throws SQLException{
         String sql = "delete from coche where id =?;";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1,c.getId());
         sentencia.executeQuery();
     }
+    /**
+     * Metodo por el cual vamos a recoger un coche y vamos a sustituir las
+     * interrogantes con los valores que queramos
+     * @param c coche que recogemos
+     * @throws SQLException 
+     */
     public void nuevoCohe(Coche c) throws SQLException{
         String sql="insert into coche (marca,modelo,matricula,color,duenio,precio) values(?,?,?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);

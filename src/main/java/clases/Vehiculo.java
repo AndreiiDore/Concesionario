@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Clase Abstracta 
  */
 package clases;
 
@@ -17,8 +15,21 @@ public abstract class Vehiculo {
     private String color;
     private int dueño;
     private int precio;
-
+    /**
+     * Constructor vacio
+     */
     public Vehiculo(){};
+    /**
+     * Constructor con todos los parametos que necesitamos para crear un objeto
+     * de la clase Vehiculo completo aunque no se pueda instanciar
+     * @param id
+     * @param marca
+     * @param modelo
+     * @param matricula
+     * @param color
+     * @param dueño
+     * @param precio 
+     */
     public Vehiculo(int id, String marca, String modelo,String matricula, String color, int dueño,int precio ) {
         this.id = id;
         this.marca = marca;
@@ -30,7 +41,11 @@ public abstract class Vehiculo {
     }
 
     
-    
+    /**
+     * metodo abstarcto con el cual tenemos la obligacion de implementarlo en 
+     * las clases que se hereden
+     * @return no retorna nada
+     */
     @Override
     public abstract String toString();
     /**
