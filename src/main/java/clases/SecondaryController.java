@@ -1,6 +1,6 @@
 package clases;
 
-import Enum.Gasolina;
+
 import clases.dao.CarDao;
 import java.io.IOException;
 import java.sql.SQLException;

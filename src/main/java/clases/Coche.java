@@ -4,8 +4,6 @@
  */
 package clases;
 
-import Enum.Gasolina;
-
 /**
  *
  * @author Andrei
